@@ -1,0 +1,43 @@
+.tax-form {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+}
+
+h3 {
+    margin-bottom: 0;
+}
+
+button {
+    margin-top: 0.5rem;
+}
+
+.error-alert {
+    color: red;
+    margin-bottom: 0.5rem;
+    margin-left: 0.2rem;
+}
+
+.results-table {
+    margin-top: 1rem;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.results-table th,
+.results-table td {
+    border: 1px solid currentColor;
+    padding: 0.5rem;
+}
+
+.results-table th {
+    text-align: left;
+    font-weight: 600;
+}
+
+.results-table td {
+    text-align: right;
+}
