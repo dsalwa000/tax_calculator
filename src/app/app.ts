@@ -79,7 +79,7 @@ import { ProgPodatkowy, TaxCalculatorService } from './tax-calculator-service';
             <td>{{ skladkaZdrowotna() | number:'1.2-2' }}</td>
           </tr>
           <tr>
-            <td>Dochód - od tego zależy twój próg podatkowy</td>
+            <td>Dochód - od tego zależy próg podatkowy</td>
             <td>{{ dochod() | number:'1.2-2' }}</td>
           </tr>
           <tr>
@@ -96,7 +96,7 @@ import { ProgPodatkowy, TaxCalculatorService } from './tax-calculator-service';
           </tr>
           @if (zaliczkaRozliczeniePIT() !== 0) {
             <tr>
-              <td>Zaliczka do odbioru podczas rozliczenia PIT</td>
+              <td>Zaliczka do odbioru podczas rozliczania PIT</td>
               <td>{{ zaliczkaRozliczeniePIT() | number:'1.2-2' }}</td>
             </tr>
           }
