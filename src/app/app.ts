@@ -24,11 +24,11 @@ import { ProgPodatkowy, SalaryResult, TaxCalculatorService } from './tax-calcula
   <h1>{{ title() }}</h1>
   <form [formGroup]="calucationForm" (ngSubmit)="calculate()" class="tax-form">
     <mat-form-field class="example-full-width">
-      <mat-label>Kwota brutto</mat-label>
+      <mat-label>Kwota roczna brutto</mat-label>
       <input
         matInput
         formControlName="brutto"
-        placeholder="Wprwadź przynajmniej minimalną krajową brutto"
+        placeholder="Wprowadz przynajmniej miniamlną krajową rocznie"
       >
     </mat-form-field>
     @if (
@@ -102,7 +102,7 @@ import { ProgPodatkowy, SalaryResult, TaxCalculatorService } from './tax-calcula
 export class App {
   private fb = inject(FormBuilder)
   private taxCalculatorService = inject(TaxCalculatorService)
-  protected readonly title = signal('Kalkulator podatkowy UOP');
+  protected readonly title = signal('Kalkulator UOP');
 
   skladkiSpoleczne = signal<number | null>(null);
   skladkaZdrowotna = signal<number | null>(null);
