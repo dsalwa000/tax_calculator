@@ -55,7 +55,7 @@ import { ProgPodatkowy, SalaryResult, TaxCalculatorService } from './tax-calcula
     </span>
     <button type="submit" matButton="filled">Oblicz!</button>
     @if (calculated()) {
-      <h3>Obecnie znajdujesz się w: {{ progPodatkowy() }} progu podatkowym.</h3>
+      <h3>Obecnie znajdujesz się w <u>{{ progPodatkowy() }}</u> progu podatkowym.</h3>
       <table class="results-table">
         <tbody>
           <tr>
@@ -102,7 +102,7 @@ import { ProgPodatkowy, SalaryResult, TaxCalculatorService } from './tax-calcula
 export class App {
   private fb = inject(FormBuilder)
   private taxCalculatorService = inject(TaxCalculatorService)
-  protected readonly title = signal('Kalkulator podatkowy dla UOP');
+  protected readonly title = signal('Kalkulator podatkowy UOP');
 
   skladkiSpoleczne = signal<number | null>(null);
   skladkaZdrowotna = signal<number | null>(null);

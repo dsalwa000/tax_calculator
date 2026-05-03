@@ -20,25 +20,25 @@ export interface SalaryResult {
   providedIn: 'root',
 })
 export class TaxCalculatorService {
-  readonly EMERYTALNA = 0.0976;
-  readonly RENTOWA = 0.015;
-  readonly CHOROBOWA = 0.0245;
-  readonly SKLADKI_SPOLECZNE = this.EMERYTALNA + this.RENTOWA + this.CHOROBOWA;
+  private readonly EMERYTALNA = 0.0976;
+  private readonly RENTOWA = 0.015;
+  private readonly CHOROBOWA = 0.0245;
+  private readonly SKLADKI_SPOLECZNE = this.EMERYTALNA + this.RENTOWA + this.CHOROBOWA;
 
-  readonly KWOTA_SPOLECZNA_BOGACI = 234720.0;
-  readonly SKLADKI_SPOLECZNE_BOGACI = this.CHOROBOWA;
+  private readonly KWOTA_SPOLECZNA_BOGACI = 234720.0;
+  private readonly SKLADKI_SPOLECZNE_BOGACI = this.CHOROBOWA;
 
-  readonly PROCENT_ZDROWOTNA = 0.09;
-  readonly KOSZTY_UZYSKANIA_PRZYCHODU = 3000.0;
+  private readonly PROCENT_ZDROWOTNA = 0.09;
+  private readonly KOSZTY_UZYSKANIA_PRZYCHODU = 3000.0;
 
-  readonly DRUGI_PROG = 120000.0;
-  readonly TRZECI_PROG = 1000000.0;
-  readonly KWOTA_ZMNIEJSZAJACA_PODATEK = 3600.0;
+  private readonly DRUGI_PROG = 120000.0;
+  private readonly TRZECI_PROG = 1000000.0;
+  private readonly KWOTA_ZMNIEJSZAJACA_PODATEK = 3600.0;
 
-  readonly PROCENT_PIERWSZY_PROG = 0.12;
-  readonly PROCENT_DRUGI_PROG = 0.32;
-  readonly DANINA_SOLIDARNOSCIOWA = 0.04;
-  readonly PROCENT_TRZECI_PROG = this.PROCENT_DRUGI_PROG + this.DANINA_SOLIDARNOSCIOWA;
+  private readonly PROCENT_PIERWSZY_PROG = 0.12;
+  private readonly PROCENT_DRUGI_PROG = 0.32;
+  private readonly DANINA_SOLIDARNOSCIOWA = 0.04;
+  private readonly PROCENT_TRZECI_PROG = this.PROCENT_DRUGI_PROG + this.DANINA_SOLIDARNOSCIOWA;
 
   constructor() {}
 
