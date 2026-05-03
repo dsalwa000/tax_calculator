@@ -5,11 +5,10 @@
 
 h1 {
     text-align: center;
+    margin: 2rem;
 }
 
-h2 {
-    margin-top: 2rem;
-}
+h2 {}
 
 h3 {
     text-align: justify;
@@ -17,7 +16,7 @@ h3 {
 }
 
 button {
-    margin-top: 0.5rem;
+    margin-top: .8rem;
 }
 
 ul {
@@ -26,8 +25,8 @@ ul {
 
 .error-alert {
     color: red;
-    margin-bottom: 0.5rem;
-    margin-left: 0.2rem;
+    margin-bottom: .8rem;
+    margin-left: .2rem;
 }
 
 .results-table {

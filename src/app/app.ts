@@ -50,73 +50,73 @@ import { ProgPodatkowy, TaxCalculatorService } from './tax-calculator-service';
         class="example-margin"
         formControlName="pit2"
       >
-        Czy nie masz złozonej deklaracji PIT-2?
+        Czy masz deklarację PIT-2?
       </mat-checkbox>
     </span>
     <button type="submit" matButton="filled">Oblicz!</button>
-    @if (calculated()) {
-      <h2>Obecnie łapisz się w <u>{{ progPodatkowy() }}</u> progu podatkowym.</h2>
-      <table class="results-table">
-        <tbody>
-          <tr>
-            <th>Kategoria</th>
-            <th>Suma w PLN</th>
-          </tr>
-          <tr>
-            <td>Brutto rocznie</td>
-            <td>{{ calucationForm.get('brutto')?.value | number:'1.2-2' }}</td>
-          </tr>
-          <tr>
-            <td>Brutto miesięcznie</td>
-            <td>{{ bruttoMiesiecznie() | number:'1.2-2' }}</td>
-          </tr>
-          <tr>
-            <td>Składki społeczne</td>
-            <td>{{ skladkiSpoleczne() | number:'1.2-2' }}</td>
-          </tr>
-          <tr>
-            <td>Składka zdrowotna</td>
-            <td>{{ skladkaZdrowotna() | number:'1.2-2' }}</td>
-          </tr>
-          <tr>
-            <td>Dochód - od tego zależy próg podatkowy</td>
-            <td>{{ dochod() | number:'1.2-2' }}</td>
-          </tr>
-          <tr>
-            <td>Zapłacony podatek</td>
-            <td>{{ podatek() | number:'1.2-2' }}</td>
-          </tr>
-          <tr>
-            <td>Netto rocznie</td>
-            <td>{{ nettoRocznie() | number:'1.2-2' }}</td>
-          </tr>
-          <tr>
-            <td>Netto miesięcznie</td>
-            <td>{{ nettoMiesiecznie() | number:'1.2-2' }}</td>
-          </tr>
-          @if (zaliczkaRozliczeniePIT() !== 0) {
-            <tr>
-              <td>Zaliczka do odbioru podczas rozliczania PIT</td>
-              <td>{{ zaliczkaRozliczeniePIT() | number:'1.2-2' }}</td>
-            </tr>
-          }
-        </tbody>
-      </table>
-
-      <h3>Próg podatkowy zależy od dochodu</h3>
-      <ul>
-        <li>pierwszy próg do <b>120 000 PLN</b></li>
-        <li>drugi próg do do <b>1 000 000 PLN</b></li>
-      </ul>
-    }
   </form>
+  @if (calculated()) {
+    <h2>Obecnie łapisz się w <u>{{ progPodatkowy() }}</u> progu podatkowym.</h2>
+    <table class="results-table">
+      <tbody>
+        <tr>
+          <th>Kategoria</th>
+          <th>Suma w PLN</th>
+        </tr>
+        <tr>
+          <td>Brutto rocznie</td>
+          <td>{{ calucationForm.get('brutto')?.value | number:'1.2-2' }}</td>
+        </tr>
+        <tr>
+          <td>Brutto miesięcznie</td>
+          <td>{{ bruttoMiesiecznie() | number:'1.2-2' }}</td>
+        </tr>
+        <tr>
+          <td>Składki społeczne</td>
+          <td>{{ skladkiSpoleczne() | number:'1.2-2' }}</td>
+        </tr>
+        <tr>
+          <td>Składka zdrowotna</td>
+          <td>{{ skladkaZdrowotna() | number:'1.2-2' }}</td>
+        </tr>
+        <tr>
+          <td>Dochód - od tego zależy próg podatkowy</td>
+          <td>{{ dochod() | number:'1.2-2' }}</td>
+        </tr>
+        <tr>
+          <td>Zapłacony podatek</td>
+          <td>{{ podatek() | number:'1.2-2' }}</td>
+        </tr>
+        <tr>
+          <td>Netto rocznie</td>
+          <td>{{ nettoRocznie() | number:'1.2-2' }}</td>
+        </tr>
+        <tr>
+          <td>Netto miesięcznie</td>
+          <td>{{ nettoMiesiecznie() | number:'1.2-2' }}</td>
+        </tr>
+        @if (zaliczkaRozliczeniePIT() !== 0) {
+          <tr>
+            <td>Zaliczka do odbioru podczas rozliczania PIT</td>
+            <td>{{ zaliczkaRozliczeniePIT() | number:'1.2-2' }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    <h3>Próg podatkowy zależy od dochodu</h3>
+    <ul>
+      <li>pierwszy próg do <b>120 000 PLN</b></li>
+      <li>drugi próg do do <b>1 000 000 PLN</b></li>
+    </ul>
+  }
   `,
   styleUrl: './app.scss'
 })
 export class App {
   private fb = inject(FormBuilder)
   private taxCalculatorService = inject(TaxCalculatorService)
-  protected readonly title = signal('Kalkulator UOP');
+  protected readonly title = signal('Kalkulator UOP 🏧');
 
   skladkiSpoleczne = signal<number | null>(null);
   skladkaZdrowotna = signal<number | null>(null);
