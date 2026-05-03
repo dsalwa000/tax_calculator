@@ -55,49 +55,59 @@ import { ProgPodatkowy, TaxCalculatorService } from './tax-calculator-service';
     </span>
     <button type="submit" matButton="filled">Oblicz!</button>
     @if (calculated()) {
-      <h3>Obecnie znajdujesz się w <u>{{ progPodatkowy() }}</u> progu podatkowym.</h3>
+      <h2>Obecnie łapisz się w <u>{{ progPodatkowy() }}</u> progu podatkowym.</h2>
       <table class="results-table">
         <tbody>
           <tr>
-            <th>Brutto rocznie</th>
-            <td>{{ calucationForm.get('brutto')?.value | number:'1.2-2' }} PLN</td>
+            <th>Kategoria</th>
+            <th>Suma w PLN</th>
           </tr>
           <tr>
-            <th>Brutto miesięcznie</th>
-            <td>{{ bruttoMiesiecznie() | number:'1.2-2' }} PLN</td>
+            <td>Brutto rocznie</td>
+            <td>{{ calucationForm.get('brutto')?.value | number:'1.2-2' }}</td>
           </tr>
           <tr>
-            <th>Składki społeczne</th>
-            <td>{{ skladkiSpoleczne() | number:'1.2-2' }} PLN</td>
+            <td>Brutto miesięcznie</td>
+            <td>{{ bruttoMiesiecznie() | number:'1.2-2' }}</td>
           </tr>
           <tr>
-            <th>Składka zdrowotna</th>
-            <td>{{ skladkaZdrowotna() | number:'1.2-2' }} PLN</td>
+            <td>Składki społeczne</td>
+            <td>{{ skladkiSpoleczne() | number:'1.2-2' }}</td>
           </tr>
           <tr>
-            <th>Dochód - od tego zależy twój próg podatkowy</th>
-            <td>{{ dochod() | number:'1.2-2' }} PLN</td>
+            <td>Składka zdrowotna</td>
+            <td>{{ skladkaZdrowotna() | number:'1.2-2' }}</td>
           </tr>
           <tr>
-            <th>Podatek</th>
-            <td>{{ podatek() | number:'1.2-2' }} PLN</td>
+            <td>Dochód - od tego zależy twój próg podatkowy</td>
+            <td>{{ dochod() | number:'1.2-2' }}</td>
           </tr>
           <tr>
-            <th>Netto rocznie</th>
-            <td>{{ nettoRocznie() | number:'1.2-2' }} PLN</td>
+            <td>Zapłacony podatek</td>
+            <td>{{ podatek() | number:'1.2-2' }}</td>
           </tr>
           <tr>
-            <th>Netto miesięcznie</th>
-            <td>{{ nettoMiesiecznie() | number:'1.2-2' }} PLN</td>
+            <td>Netto rocznie</td>
+            <td>{{ nettoRocznie() | number:'1.2-2' }}</td>
+          </tr>
+          <tr>
+            <td>Netto miesięcznie</td>
+            <td>{{ nettoMiesiecznie() | number:'1.2-2' }}</td>
           </tr>
           @if (zaliczkaRozliczeniePIT() !== 0) {
             <tr>
-              <th>Dodatkowa zaliczka do odbioru na rozliczenie PIT</th>
-              <td>{{ zaliczkaRozliczeniePIT() | number:'1.2-2' }} PLN</td>
+              <td>Zaliczka do odbioru podczas rozliczenia PIT</td>
+              <td>{{ zaliczkaRozliczeniePIT() | number:'1.2-2' }}</td>
             </tr>
           }
         </tbody>
       </table>
+
+      <h3>Próg podatkowy zależy od dochodu</h3>
+      <ul>
+        <li>pierwszy próg do <b>120 000 PLN</b></li>
+        <li>drugi próg do do <b>1 000 000 PLN</b></li>
+      </ul>
     }
   </form>
   `,
