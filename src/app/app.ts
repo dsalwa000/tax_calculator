@@ -65,7 +65,7 @@ import { ProgPodatkowy, TaxCalculatorService } from './tax-calculator-service';
         </tr>
         <tr>
           <td>Brutto rocznie</td>
-          <td>{{ calucationForm.get('brutto')?.value | number:'1.2-2' }}</td>
+          <td>{{ bruttoRocznie() | number:'1.2-2' }}</td>
         </tr>
         <tr>
           <td>Brutto miesięcznie</td>
@@ -125,6 +125,7 @@ export class App {
   nettoRocznie = signal<number | null>(null);
   nettoMiesiecznie = signal<number | null>(null);
   bruttoMiesiecznie = signal<number | null>(null);
+  bruttoRocznie = signal<number | null>(null);
   calculated = signal<boolean>(false);
   progPodatkowy = signal<ProgPodatkowy>(ProgPodatkowy.PIERWSZY)
   zaliczkaRozliczeniePIT = signal<number>(0)
@@ -154,6 +155,7 @@ export class App {
     const { progPodatkowy, skladkiSpoleczne, skladkaZdrowotna, dochod, podatek, nettoRocznie, nettoMiesiecznie } =
       this.taxCalculatorService.calculate(brutto);
 
+    this.bruttoRocznie.set(brutto);
     this.bruttoMiesiecznie.set(brutto / 12);
     this.skladkiSpoleczne.set(skladkiSpoleczne);
     this.skladkaZdrowotna.set(skladkaZdrowotna);
