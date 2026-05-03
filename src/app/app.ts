@@ -160,7 +160,7 @@ export class App {
     this.dochod.set(dochod);
     this.podatek.set(podatek);
     this.nettoRocznie.set(nettoRocznie);
-    if (pit2) {
+    if (!pit2) {
       this.nettoMiesiecznie.set(nettoMiesiecznie - 300);
       this.zaliczkaRozliczeniePIT.set(3600);
     } else {
