@@ -28,7 +28,7 @@ import { ProgPodatkowy, TaxCalculatorService } from './tax-calculator-service';
       <input
         matInput
         formControlName="brutto"
-        placeholder="Wprowadz przynajmniej miniamlną krajową rocznie"
+        placeholder="Wpisz roczną kwotę brutto"
       >
     </mat-form-field>
     @if (
