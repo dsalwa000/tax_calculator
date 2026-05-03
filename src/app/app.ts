@@ -60,40 +60,40 @@ import { ProgPodatkowy, TaxCalculatorService } from './tax-calculator-service';
         <tbody>
           <tr>
             <th>Brutto rocznie</th>
-            <td>{{ calucationForm.get('brutto')?.value | number:'1.2-2' }}</td>
+            <td>{{ calucationForm.get('brutto')?.value | number:'1.2-2' }} PLN</td>
           </tr>
           <tr>
             <th>Brutto miesięcznie</th>
-            <td>{{ bruttoMiesiecznie() | number:'1.2-2' }}</td>
+            <td>{{ bruttoMiesiecznie() | number:'1.2-2' }} PLN</td>
           </tr>
           <tr>
             <th>Składki społeczne</th>
-            <td>{{ skladkiSpoleczne() | number:'1.2-2' }}</td>
+            <td>{{ skladkiSpoleczne() | number:'1.2-2' }} PLN</td>
           </tr>
           <tr>
             <th>Składka zdrowotna</th>
-            <td>{{ skladkaZdrowotna() | number:'1.2-2' }}</td>
+            <td>{{ skladkaZdrowotna() | number:'1.2-2' }} PLN</td>
           </tr>
           <tr>
             <th>Dochód - od tego zależy twój próg podatkowy</th>
-            <td>{{ dochod() | number:'1.2-2' }}</td>
+            <td>{{ dochod() | number:'1.2-2' }} PLN</td>
           </tr>
           <tr>
             <th>Podatek</th>
-            <td>{{ podatek() | number:'1.2-2' }}</td>
+            <td>{{ podatek() | number:'1.2-2' }} PLN</td>
           </tr>
           <tr>
             <th>Netto rocznie</th>
-            <td>{{ nettoRocznie() | number:'1.2-2' }}</td>
+            <td>{{ nettoRocznie() | number:'1.2-2' }} PLN</td>
           </tr>
           <tr>
             <th>Netto miesięcznie</th>
-            <td>{{ nettoMiesiecznie() | number:'1.2-2' }}</td>
+            <td>{{ nettoMiesiecznie() | number:'1.2-2' }} PLN</td>
           </tr>
           @if (zaliczkaRozliczeniePIT() !== 0) {
             <tr>
               <th>Dodatkowa zaliczka do odbioru na rozliczenie PIT</th>
-              <td>{{ zaliczkaRozliczeniePIT() | number:'1.2-2' }}</td>
+              <td>{{ zaliczkaRozliczeniePIT() | number:'1.2-2' }} PLN</td>
             </tr>
           }
         </tbody>
