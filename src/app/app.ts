@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import { ProgPodatkowy, SalaryResult, TaxCalculatorService } from './tax-calculator-service';
+import { ProgPodatkowy, TaxCalculatorService } from './tax-calculator-service';
 
 
 @Component({
@@ -60,7 +60,11 @@ import { ProgPodatkowy, SalaryResult, TaxCalculatorService } from './tax-calcula
         <tbody>
           <tr>
             <th>Brutto rocznie</th>
-            <td>{{ calucationForm.get('brutto')?.value }}</td>
+            <td>{{ calucationForm.get('brutto')?.value | number:'1.2-2' }}</td>
+          </tr>
+          <tr>
+            <th>Brutto miesięcznie</th>
+            <td>{{ bruttoMiesiecznie() | number:'1.2-2' }}</td>
           </tr>
           <tr>
             <th>Składki społeczne</th>
@@ -110,6 +114,7 @@ export class App {
   podatek = signal<number | null>(null);
   nettoRocznie = signal<number | null>(null);
   nettoMiesiecznie = signal<number | null>(null);
+  bruttoMiesiecznie = signal<number | null>(null);
   calculated = signal<boolean>(false);
   progPodatkowy = signal<ProgPodatkowy>(ProgPodatkowy.PIERWSZY)
   zaliczkaRozliczeniePIT = signal<number>(0)
@@ -139,6 +144,7 @@ export class App {
     const { progPodatkowy, skladkiSpoleczne, skladkaZdrowotna, dochod, podatek, nettoRocznie, nettoMiesiecznie } =
       this.taxCalculatorService.calculate(brutto);
 
+    this.bruttoMiesiecznie.set(brutto / 12);
     this.skladkiSpoleczne.set(skladkiSpoleczne);
     this.skladkaZdrowotna.set(skladkaZdrowotna);
     this.dochod.set(dochod);
