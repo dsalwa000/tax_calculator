@@ -75,7 +75,7 @@ import { MatButtonToggleModule, MatButtonToggleChange } from '@angular/material/
           <th>Kategoria</th>
           <th>Suma w PLN</th>
         </tr>
-        <tr>
+        <tr class="bold-row">
           <td>Brutto rocznie</td>
           <td>{{ bruttoRocznie() | number:'1.2-2' }}</td>
         </tr>
@@ -105,7 +105,7 @@ import { MatButtonToggleModule, MatButtonToggleChange } from '@angular/material/
             <td>{{ zaliczkaRozliczeniePIT() | number:'1.2-2' }}</td>
           </tr>
         }
-        <tr>
+        <tr class="bold-row">
           <td>Netto rocznie</td>
           <td>{{ nettoRocznie() | number:'1.2-2' }}</td>
         </tr>
