@@ -1,7 +1,4 @@
-.tax-form {
-    display: flex;
-    flex-direction: column;
-}
+@use '@angular/material' as mat;
 
 h1 {
     text-align: center;
@@ -17,8 +14,25 @@ button {
     margin-top: .8rem;
 }
 
+td, th {
+    border: 1px solid currentColor;
+    padding: 0.5rem;
+    text-align: left;
+}
+
 ul {
     margin: 0 0 1rem 0;
+}
+
+.toggle {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 1.5rem 0;
+}
+
+.tax-form {
+    display: flex;
+    flex-direction: column;
 }
 
 .error-alert {
@@ -33,8 +47,10 @@ ul {
     border-collapse: collapse;
 }
 
-td, th {
-    border: 1px solid currentColor;
-    padding: 0.5rem;
-    text-align: left;
+.bold-row {
+    font-weight: 600;
+}
+
+.list-wrapper {
+    padding-bottom: .5rem;
 }

@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { ProgPodatkowy, TaxCalculatorService } from './tax-calculator-service';
-
+import { MatButtonToggleModule, MatButtonToggleChange } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-root',
@@ -18,17 +18,29 @@ import { ProgPodatkowy, TaxCalculatorService } from './tax-calculator-service';
     MatFormFieldModule,
     FormsModule,
     MatCheckboxModule,
-    MatButtonModule
+    MatButtonModule,
+    MatButtonToggleModule
   ],
   template: `
   <h1>{{ title() }}</h1>
+  <div class="toggle">
+    <mat-button-toggle-group (change)="onToggleChange()" class="toggle-group">
+      <mat-button-toggle [checked]="czyMiesiecznyInput()">Miesięcznie</mat-button-toggle>
+      <mat-button-toggle>Rocznie</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
   <form [formGroup]="calucationForm" (ngSubmit)="calculate()" class="tax-form">
     <mat-form-field class="example-full-width">
-      <mat-label>Kwota roczna brutto</mat-label>
+      @if (czyMiesiecznyInput()) {
+        <mat-label>Kwota miesięczna brutto</mat-label>
+      }
+      @else {
+        <mat-label>Kwota roczna brutto</mat-label>
+      }
       <input
         matInput
         formControlName="brutto"
-        placeholder="Wpisz roczną kwotę brutto"
+        [placeholder]="czyMiesiecznyInput() ? 'Wpradź roczną kwotę brutto' : 'Wprowadź roczne zarobki brutto'"
       >
     </mat-form-field>
     @if (
@@ -67,7 +79,7 @@ import { ProgPodatkowy, TaxCalculatorService } from './tax-calculator-service';
           <td>Brutto rocznie</td>
           <td>{{ bruttoRocznie() | number:'1.2-2' }}</td>
         </tr>
-        <tr>
+        <tr class="bold-row">
           <td>Brutto miesięcznie</td>
           <td>{{ bruttoMiesiecznie() | number:'1.2-2' }}</td>
         </tr>
@@ -80,20 +92,12 @@ import { ProgPodatkowy, TaxCalculatorService } from './tax-calculator-service';
           <td>{{ skladkaZdrowotna() | number:'1.2-2' }}</td>
         </tr>
         <tr>
-          <td>Dochód - od tego zależy próg podatkowy</td>
-          <td>{{ dochod() | number:'1.2-2' }}</td>
-        </tr>
-        <tr>
           <td>Zapłacony podatek</td>
           <td>{{ podatek() | number:'1.2-2' }}</td>
         </tr>
-        <tr>
-          <td>Netto rocznie</td>
-          <td>{{ nettoRocznie() | number:'1.2-2' }}</td>
-        </tr>
-        <tr>
-          <td>Netto miesięcznie</td>
-          <td>{{ nettoMiesiecznie() | number:'1.2-2' }}</td>
+        <tr class="bold-row">
+          <td>Dochód - od tego zależy próg podatkowy</td>
+          <td>{{ dochod() | number:'1.2-2' }}</td>
         </tr>
         @if (zaliczkaRozliczeniePIT() !== 0) {
           <tr>
@@ -101,14 +105,24 @@ import { ProgPodatkowy, TaxCalculatorService } from './tax-calculator-service';
             <td>{{ zaliczkaRozliczeniePIT() | number:'1.2-2' }}</td>
           </tr>
         }
+        <tr>
+          <td>Netto rocznie</td>
+          <td>{{ nettoRocznie() | number:'1.2-2' }}</td>
+        </tr>
+        <tr class="bold-row">
+          <td>Netto miesięcznie</td>
+          <td>{{ nettoMiesiecznie() | number:'1.2-2' }}</td>
+        </tr>
       </tbody>
     </table>
 
     <h3>Próg podatkowy zależy od dochodu</h3>
-    <ul>
-      <li>pierwszy próg do <b>120 000 PLN</b></li>
-      <li>drugi próg do do <b>1 000 000 PLN</b></li>
-    </ul>
+    <div class="list-wrapper">
+      <ul>
+        <li>pierwszy próg do <b>120 000 PLN</b></li>
+        <li>drugi próg do do <b>1 000 000 PLN</b></li>
+      </ul>
+    </div>
   }
   `,
   styleUrl: './app.scss'
@@ -118,6 +132,7 @@ export class App {
   private taxCalculatorService = inject(TaxCalculatorService)
   protected readonly title = signal('Kalkulator UOP 🏧');
 
+  czyMiesiecznyInput = signal<boolean>(true);
   skladkiSpoleczne = signal<number | null>(null);
   skladkaZdrowotna = signal<number | null>(null);
   dochod = signal<number | null>(null);
@@ -135,22 +150,30 @@ export class App {
     pit2: [false]
   })
 
+  private cleanValues() {
+    this.skladkiSpoleczne.set(null);
+    this.skladkaZdrowotna.set(null);
+    this.dochod.set(null);
+    this.podatek.set(null);
+    this.nettoRocznie.set(null);
+    this.nettoMiesiecznie.set(null);
+    this.calculated.set(false);
+  }
+
   calculate() {
     if (this.calucationForm.invalid) {
       this.calucationForm.markAllAsTouched();
+      this.cleanValues();
 
-      this.skladkiSpoleczne.set(null);
-      this.skladkaZdrowotna.set(null);
-      this.dochod.set(null);
-      this.podatek.set(null);
-      this.nettoRocznie.set(null);
-      this.nettoMiesiecznie.set(null);
-      this.calculated.set(false);
       return;
     }
 
-    const brutto = Number(this.calucationForm.get('brutto')?.value);
+    let brutto = Number(this.calucationForm.get('brutto')?.value);
     const pit2 = Number(this.calucationForm.get('pit2')?.value);
+
+    if (this.czyMiesiecznyInput()) {
+      brutto = brutto * 12;
+    }
 
     const { progPodatkowy, skladkiSpoleczne, skladkaZdrowotna, dochod, podatek, nettoRocznie, nettoMiesiecznie } =
       this.taxCalculatorService.calculate(brutto);
@@ -172,5 +195,10 @@ export class App {
     this.progPodatkowy.set(progPodatkowy)
 
     this.calculated.set(true)
+  }
+
+  protected onToggleChange() {
+    this.czyMiesiecznyInput.set(!this.czyMiesiecznyInput())
+    this.cleanValues();
   }
 }

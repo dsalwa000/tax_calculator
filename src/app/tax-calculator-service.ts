@@ -46,20 +46,20 @@ export class TaxCalculatorService {
     return Math.round(value * 100) / 100;
   }
 
-  calculate(bruttoRocznie: number): SalaryResult {
+  calculate(brutto: number): SalaryResult {
     let kwotaSpoleczna = 0;
-    
-    if (bruttoRocznie >= this.KWOTA_SPOLECZNA_BOGACI) {
+
+    if (brutto >= this.KWOTA_SPOLECZNA_BOGACI) {
       const pelneSkladki = this.KWOTA_SPOLECZNA_BOGACI * this.SKLADKI_SPOLECZNE;
-      const chorobowaOdNadwyzki = (bruttoRocznie - this.KWOTA_SPOLECZNA_BOGACI) * this.SKLADKI_SPOLECZNE_BOGACI;
+      const chorobowaOdNadwyzki = (brutto - this.KWOTA_SPOLECZNA_BOGACI) * this.SKLADKI_SPOLECZNE_BOGACI;
       kwotaSpoleczna = pelneSkladki + chorobowaOdNadwyzki;
     } else {
-      kwotaSpoleczna = bruttoRocznie * this.SKLADKI_SPOLECZNE;
+      kwotaSpoleczna = brutto * this.SKLADKI_SPOLECZNE;
     }
     kwotaSpoleczna = this.round(kwotaSpoleczna);
 
-    const dochod = bruttoRocznie - kwotaSpoleczna - this.KOSZTY_UZYSKANIA_PRZYCHODU;
-    const skladkaZdrowotna = this.round((bruttoRocznie - kwotaSpoleczna) * this.PROCENT_ZDROWOTNA);
+    const dochod = brutto - kwotaSpoleczna - this.KOSZTY_UZYSKANIA_PRZYCHODU;
+    const skladkaZdrowotna = this.round((brutto - kwotaSpoleczna) * this.PROCENT_ZDROWOTNA);
 
     let podatek = 0;
 
@@ -91,7 +91,7 @@ export class TaxCalculatorService {
       podatek = 0;
     }
 
-    const nettoRocznie = this.round(bruttoRocznie - kwotaSpoleczna - podatek - skladkaZdrowotna);
+    const nettoRocznie = this.round(brutto - kwotaSpoleczna - podatek - skladkaZdrowotna);
 
     return {
       progPodatkowy: progPodatowy,
