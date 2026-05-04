@@ -116,16 +116,16 @@ import { MatButtonToggleModule, MatButtonToggleChange } from '@angular/material/
       </tbody>
     </table>
 
-    <h3>Próg podatkowy zależy od dochodu:</h3>
+    <h3>Próg podatkowy zależy od dochodu</h3>
     <div class="list-wrapper">
       <ul>
-        <li>kwota wolna od podatku jest do <b>30 000 PLN</b></li>
-        <li><b>12 %</b> podatku liczy się od <b>30 000 PLN do 120 000 PLN</b></li>
-        <li><b>32 %</b> podatku liczy się od <b>120 000 PLN</b> do <b>1 000 000 PLN</b></li>
-        <li><b>32 % + 4 % (danina solidarnościowa)</b> podatku od <b>1 000 000 PLN</b></li>
+        <li>Kwota wolna od podatku do <b>30 000 PLN</b></li>
+        <li><b>12 %</b> podatku liczy się od <b>30 000 do 120 000 PLN</b></li>
+        <li><b>32 %</b> podatku liczy się od <b>120 000 do 1 000 000 PLN</b></li>
+        <li><b>32 % + 4 % (danina solidarnościowa)</b> podatku <b>od 1 000 000 PLN</b></li>
       </ul>
 
-      <small>Program wylicza bardzo przybliżone wartości lecz mogą się minimalnie rónić od realiów.*</small>
+      <small>Program wylicza bardzo przybliżone wartości lecz mogą się minimalnie rónić od realiów*</small>
     </div>
   }
   `,
